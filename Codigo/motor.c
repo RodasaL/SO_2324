@@ -134,12 +134,12 @@ void *lecommandos(void *arg)
                     // enviar msg para todos os jogadores
 
                     MSG kick_notif;
-                    kick_notif.type = 5;
+                    kick_notif.type = 5; //Motor -> UI
                     sprintf(kick_notif.msg, "O jogador %s foi kickado do jogo", user);
 
                     int hasPlayers = 0;
 
-                    pthread_mutex_lock(data->ThreadMutex);
+                    pthread_mutex_lock(data->ThreadMutex); //Lock Ja tenho um ponteiro na estrutura
                     for (int i = 0; i < MAXPLAYERS; i++)
                     {
                         if (data->allPlayers[i].PID != 0)
@@ -217,16 +217,16 @@ int jogo()
     pthread_t CommandManager;
     DataThreads.flagEnd = 0;
     DataThreads.flagInscricao = 1;
-    DataThreads.ThreadMutex = &mutex;
+    DataThreads.ThreadMutex = &mutex; //Da me + jeito ter o Mutex na thread 
 
-    pthread_create(&CommandManager, NULL, &lecommandos, &DataThreads);
+    pthread_create(&CommandManager, NULL, &lecommandos, &DataThreads);//Thread para o LeComandos com acesso ao DataThreads
 
     printf("Inscricao: %d\n", inscricao);
     printf("Minimo de jogadores: %d\n", minplayers);
     printf("Duracao: %d\n", duracao);
     printf("Decremento: %d\n", decremento);
 
-    recebeJogadores(&DataThreads, MAXPLAYERS, minplayers, inscricao);
+    recebeJogadores(&DataThreads, MAXPLAYERS, minplayers, inscricao);//
 
     DataThreads.levelDuration = duracao;
 

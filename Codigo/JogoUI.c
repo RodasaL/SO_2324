@@ -171,7 +171,7 @@ int main(int argc, char *argv[])
             sender.player = jogador;
             write(fd_motor, &sender, sizeof(sender));
             break;
-        case ' ':
+        case ' ': //Aqui quando apertas "Espaco" da para enviares comandos
             echo();     // liga echo para ver o input
             nocbreak(); // input + enter
             wclear(janelaCommandos);

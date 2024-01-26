@@ -38,7 +38,7 @@
 typedef struct Posicao {
     int x;
     int y;
-} Posicao, *PPosicao;
+} Posicao, *PPosicao; //Posicao X e Y 
 
 typedef struct Pedra {
     Posicao posicao;
@@ -73,11 +73,12 @@ typedef struct Player {
     Posicao posicao;
 
 } Jogador, *PJogador;
-
+//Guarda informacoes do Player 
 
 
 typedef struct MSG {
     /**
+     * Types:
      * -1 - Inscrição
      * 0 - Conecao
      * 1 - Update labirinto (Motor -> UI)
@@ -115,13 +116,13 @@ typedef struct MSG {
 #define INIT_DURATION 5
 typedef struct GameData
 {
-    Jogador allPlayers[MAXPLAYERS];
+    Jogador allPlayers[MAXPLAYERS];//Array com os Jogadores todos
     Bot bots[MAXBOTS]; 
 
     //Jogador *jogador; // Jogador que a thread vai atender
     int threadID;
     char labirinto[MAXCOORD_Y][MAXCOORD_X];
-    Pedra pedras[MAX_PEDRAS];
+    Pedra pedras[MAX_PEDRAS];//Array das pedras
 
 
     time_t levelStartTime;
